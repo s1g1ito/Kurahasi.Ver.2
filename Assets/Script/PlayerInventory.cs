@@ -4,12 +4,14 @@ using System.Collections.Generic;
 
 public class PlayerInventory : MonoBehaviour
 {
-    public static PlayerInventory Instance;
+    
 
     [Header("zÎŠ”iInspector‚Å•ÒWj")]
     public List<OreSlot> ores = new List<OreSlot>();
     Dictionary<OreType, OreSlot> oreDict = new Dictionary<OreType, OreSlot>();
     public Action onOreChanged;
+
+    public static PlayerInventory Instance;
 
     void Awake()
     {
@@ -31,7 +33,6 @@ public class PlayerInventory : MonoBehaviour
         InitializeOreFromGameManager();
     }
 
-
     // zÎ‚ÌŠ”‚ğ³‚µ‚­•œŒ³‚·‚é‚½‚ß‚Ìˆ—
     void InitializeOreFromGameManager()
     {
@@ -47,6 +48,7 @@ public class PlayerInventory : MonoBehaviour
         if (GameManager.Instance != null)
         {
             InitializeOreFromGameManager();
+            LoadFromGameManager();
         }
     }
 
@@ -73,8 +75,8 @@ public class PlayerInventory : MonoBehaviour
 
         oreDict[type].amount += amount;
 
-        // GameManager ‚É•Û‘¶
-        GameManager.Instance.SetOre(type, oreDict[type].amount);
+        //// GameManager ‚É•Û‘¶
+        //GameManager.Instance.SetOre(type, oreDict[type].amount);
 
         onOreChanged?.Invoke();
     }
@@ -85,8 +87,8 @@ public class PlayerInventory : MonoBehaviour
 
         oreDict[type].amount -= amount;
 
-        // GameManager ‚É•Û‘¶
-        GameManager.Instance.SetOre(type, oreDict[type].amount);
+        //// GameManager ‚É•Û‘¶
+        //GameManager.Instance.SetOre(type, oreDict[type].amount);
 
         onOreChanged?.Invoke();
         return true;

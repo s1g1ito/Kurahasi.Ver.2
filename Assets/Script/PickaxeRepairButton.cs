@@ -2,37 +2,36 @@ using UnityEngine;
 
 public class PickaxeRepairButton : MonoBehaviour
 {
-    public int maxDurability = 50;      // ピッケルの最大耐久値
+        // 必要な素材
+         public int needCoal = 2;
 
+    // 足りてるかチェック
     public void OnRepairButtonPressed()
     {
-        int current = GameManager.Instance.pickaxeDurability;
+        var gm = GameManager.Instance;
+        var inv = PlayerInventory.Instance;
 
-        //すでに耐久値が最大
-        if (current >= maxDurability)
+        // すでに最大
+        if (gm.IsPickaxeDurabilityMax())
         {
             Debug.Log("耐久値はすでに最大です");
             return;
         }
 
-        var inv = PlayerInventory.Instance;
-
-        // 必要な素材
-        int needCoal = 2;
-
-        // 足りてるかチェック
-        if(!inv.HasEnough(OreType.Coal, needCoal))
+        // 素材チェック
+        if (!inv.HasEnough(OreType.Coal, needCoal))
         {
             Debug.Log("素材が足りません");
             return;
         }
 
-        // 素材を消費
+        // 消費
         inv.UseOre(OreType.Coal, needCoal);
 
-        //耐久値を最大に
-        GameManager.Instance.pickaxeDurability = maxDurability;
+        // 修理
+        gm.RepairPickaxe();
 
         Debug.Log("ピッケルを修理しました！");
     }
 }
+
