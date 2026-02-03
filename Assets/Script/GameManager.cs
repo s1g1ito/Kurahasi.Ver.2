@@ -9,7 +9,8 @@ public class GameManager : MonoBehaviour
     public int pickaxeDurability = 50; // 現在の耐久値
     public int maxPickaxeDurability = 50;     // 最大耐久値
 
-    //public int coalCount = 0;          // 石炭の所持数
+    public bool jumpBoostPurchased = false; // ジャンプ強化を購入したか
+    public int jumpBoostRemaining = 0;      // 残り強化ジャンプ回数
 
     // 掘られたタイルの座標を保存する
     public HashSet<Vector3Int> minedTiles = new HashSet<Vector3Int>();
@@ -29,6 +30,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public bool IsPickaxeDurabilityMax()
+    {
+        return pickaxeDurability >= maxPickaxeDurability;
+    }
+    // 修理（最大まで回復）
+    public void RepairPickaxe()
+    {
+        pickaxeDurability = maxPickaxeDurability;
+    }
     public int GetOre(OreType type) 
     { 
         return oreCounts.ContainsKey(type) ? oreCounts[type] : 0; 
