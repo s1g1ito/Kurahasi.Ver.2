@@ -1,16 +1,17 @@
 using System.Collections.Generic;
 using UnityEngine;
+using static TreeEditor.TreeEditorHelper;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    public int pickaxeDurability = 50;
-    public int maxDurability = 50;
+    public int pickaxeDurability = 50; // Œ»İ‚Ì‘Ï‹v’l
+    public int maxPickaxeDurability = 50;     // Å‘å‘Ï‹v’l
 
-    public bool jumpBoostPurchased = false;
-    public int jumpBoostRemaining = 0;
+    //public int coalCount = 0;          // Î’Y‚ÌŠ”
 
+    // Œ@‚ç‚ê‚½ƒ^ƒCƒ‹‚ÌÀ•W‚ğ•Û‘¶‚·‚é
     public HashSet<Vector3Int> minedTiles = new HashSet<Vector3Int>();
 
     public Dictionary<OreType, int> oreCounts = new Dictionary<OreType, int>();
@@ -20,14 +21,7 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
-
-            // š OreType ‚ğ‚·‚×‚Ä‰Šú‰»
-            foreach (OreType type in System.Enum.GetValues(typeof(OreType)))
-            {
-                if (!oreCounts.ContainsKey(type))
-                    oreCounts[type] = 0;
-            }
+            DontDestroyOnLoad(gameObject); // ƒV[ƒ“‚ğ‚Ü‚½‚¢‚Å‚à”jŠü‚³‚ê‚È‚¢
         }
         else
         {
@@ -35,38 +29,21 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public int GetOre(OreType type)
-    {
-        return oreCounts.ContainsKey(type) ? oreCounts[type] : 0;
+    public int GetOre(OreType type) 
+    { 
+        return oreCounts.ContainsKey(type) ? oreCounts[type] : 0; 
+    }
+    public void SetOre(OreType type, int amount) 
+    { 
+        oreCounts[type] = amount; 
     }
 
-    public void SetOre(OreType type, int amount)
-    {
-        oreCounts[type] = amount;
-    }
-
-    // š zÎ‚ğ‘‚â‚·
-    public void AddOre(OreType type, int amount)
-    {
-        if (!oreCounts.ContainsKey(type))
-            oreCounts[type] = 0;
-
-        oreCounts[type] += amount;
-    }
-
-    // š zÎ‚ğÁ”ï‚·‚é
-    public bool UseOre(OreType type, int amount)
-    {
-        if (GetOre(type) < amount)
-            return false;
-
-        oreCounts[type] -= amount;
-        return true;
-    }
-
+    // ‘Ï‹v’l‚ğŒ¸‚ç‚·
     public void ReduceDurability(int amount)
     {
         pickaxeDurability -= amount;
-        pickaxeDurability = Mathf.Clamp(pickaxeDurability, 0, maxDurability);
+        pickaxeDurability = Mathf.Clamp(pickaxeDurability, 0, maxPickaxeDurability);
     }
+
+    
 }
