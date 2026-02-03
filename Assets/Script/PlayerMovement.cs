@@ -5,8 +5,11 @@ public class PlayerMovement : MonoBehaviour
     // プレイヤーの移動速度
     public float moveSpeed = 5f;
 
-    // ジャンプの強さ
+    // 通常ジャンプ力
     public float jumpForce = 7f;
+
+    // 強化ジャンプ力
+    public float boostedJumpForce = 12f;
 
     // 地面判定を行う位置
     public Transform groundCheck;
@@ -15,27 +18,33 @@ public class PlayerMovement : MonoBehaviour
     public float groundCheckRadius = 0.2f;
 
     // どのレイヤーを「地面」として判定するか
-    public LayerMask groundLayer;     
+    public LayerMask groundLayer;
 
     private Rigidbody2D rb;
 
     // ゴール穴などに吸い込まれているかどうか
-    // true のときはプレイヤーを操作できない
     public bool isAbsorbing = false;
 
-    // 現在地面にいるかどうか（Inspector で確認できるように SerializeField）
+    // 現在地面にいるかどうか
     [SerializeField] private bool isGrounded = false;
 
     void Start()
     {
-        // プレイヤーに付いている Rigidbody2D を取得
         rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
-        // 地面判定（Raycast）
+        // 地面判定
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+
+        // 吸い込み中なら操作不可
+        if (isAbsorbing)
+        {
+            rb.linearVelocity = Vector2.zero;
+            rb.angularVelocity = 0f;
+            return;
+        }
 
         // 左右移動
         float move = 0f;
@@ -47,27 +56,34 @@ public class PlayerMovement : MonoBehaviour
 
         rb.linearVelocity = new Vector2(move * moveSpeed, rb.linearVelocity.y);
 
-        // ジャンプ
+        // ============================
+        // ジャンプ（強化ジャンプ対応）
+        // ============================
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-        }
+            float finalJumpPower = jumpForce;
 
-        // =====================
-        // 吸い込み中の処理
-        // =====================
+            //ジャンプ強化が有効なら強化ジャンプ
+            if (GameManager.Instance.jumpBoostPurchased &&
+                GameManager.Instance.jumpBoostRemaining > 0)
+            {
+                finalJumpPower = boostedJumpForce;
 
-        // ゴール穴などに吸い込まれている場合
-        if (isAbsorbing)
-        {
-            // プレイヤーを完全に止める
-            rb.linearVelocity = Vector2.zero;
+                // 使用回数を減らす
+                GameManager.Instance.jumpBoostRemaining--;
 
-            // 回転もしないようにする
-            rb.angularVelocity = 0f;
+                Debug.Log("強化ジャンプ！ 残り：" + GameManager.Instance.jumpBoostRemaining);
 
-            // これより下の処理は実行しない
-            return;
+                // 0になったら強化終了
+                if (GameManager.Instance.jumpBoostRemaining <= 0)
+                {
+                    GameManager.Instance.jumpBoostPurchased = false;
+                    Debug.Log("強化ジャンプ終了。通常ジャンプに戻ります。");
+                }
+            }
+
+            // 実際のジャンプ
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, finalJumpPower);
         }
     }
 }

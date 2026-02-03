@@ -20,21 +20,44 @@ public class PlayerInventory : MonoBehaviour
         {
             oreDict[ore.type] = ore;
         }
+
+        //GameManager がまだ存在しない場合は何もしない
+        if (GameManager.Instance == null)
+        {
+            Debug.LogWarning("PlayerInventory: GameManager がまだ存在しません。Start で読み込みます。");
+            return;
+        }
+
+        InitializeOreFromGameManager();
     }
 
-    void Start()
-    {
-        // GameManager が確実に存在してから読み込む
-        LoadFromGameManager();
-    }
-
-
-    void LoadFromGameManager()
+    void InitializeOreFromGameManager()
     {
         foreach (var ore in oreDict)
         {
             ore.Value.amount = GameManager.Instance.GetOre(ore.Key);
         }
+    }
+
+
+    void Start()
+    {
+        if (GameManager.Instance != null)
+        {
+            InitializeOreFromGameManager();
+        }
+    }
+
+
+    // ★ シーンに戻ってきたときにも呼べるように public にする
+    public void LoadFromGameManager()
+    {
+        foreach (var ore in oreDict)
+        {
+            ore.Value.amount = GameManager.Instance.GetOre(ore.Key);
+        }
+
+        onOreChanged?.Invoke();
     }
 
     public int GetOre(OreType type)
@@ -50,6 +73,7 @@ public class PlayerInventory : MonoBehaviour
 
         // GameManager に保存
         GameManager.Instance.SetOre(type, oreDict[type].amount);
+
         onOreChanged?.Invoke();
     }
 

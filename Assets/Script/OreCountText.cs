@@ -8,21 +8,42 @@ public class OreCountText : MonoBehaviour
 
     private PlayerInventory inventory;
 
+    void OnEnable()
+    {
+        // シーン復帰時にも PlayerInventory を探し直す
+        TryRegister();
+    }
+
+    void OnDisable()
+    {
+        // イベント解除（重複登録防止）
+        if (inventory != null)
+            inventory.onOreChanged -= UpdateText;
+    }
+
     void Start()
     {
-        // CountText が設定されていない場合はエラー
+        TryRegister();
+    }
+
+    // ★ PlayerInventory を探してイベント登録する共通関数
+    void TryRegister()
+    {
         if (CountText == null)
         {
             Debug.LogError("OreCountText: CountText が Inspector に設定されていません");
             return;
         }
 
-        // PlayerInventory を探す
+        // すでに登録済みなら何もしない
+        if (inventory != null)
+            return;
+
         inventory = FindFirstObjectByType<PlayerInventory>();
 
         if (inventory == null)
         {
-            Debug.LogError("OreCountText: PlayerInventory がシーンに見つかりません");
+            Debug.LogWarning("OreCountText: PlayerInventory がまだ見つかりません");
             return;
         }
 

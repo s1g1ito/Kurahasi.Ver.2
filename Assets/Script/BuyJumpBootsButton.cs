@@ -20,7 +20,8 @@ public class BuyJumpBootsButton : MonoBehaviour
         //靴を購入（ここに強化処理を書く）
         Debug.Log("ジャンプ強化の靴を購入しました！");
 
-        // 例：プレイヤーのジャンプ力を上げる処理
-        // player.jumpPower += 2;
+        //ジャンプ強化を有効化
+        GameManager.Instance.jumpBoostPurchased = true; 
+        GameManager.Instance.jumpBoostRemaining = 5; // 5回まで強化ジャンプ可能
     }
 }

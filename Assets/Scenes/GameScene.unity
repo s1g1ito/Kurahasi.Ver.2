@@ -5666,6 +5666,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickaxeDurability: 50
   maxDurability: 50
+  jumpBoostPurchased: 0
+  jumpBoostRemaining: 0
 --- !u!4 &1444456188
 Transform:
   m_ObjectHideFlags: 0
@@ -6404,6 +6406,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   jumpForce: 10
+  boostedJumpForce: 12
   groundCheck: {fileID: 2020666729}
   groundCheckRadius: 0.3
   groundLayer:
