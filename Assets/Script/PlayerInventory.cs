@@ -31,6 +31,8 @@ public class PlayerInventory : MonoBehaviour
         InitializeOreFromGameManager();
     }
 
+
+    // zÎ‚ÌŠ”‚ğ³‚µ‚­•œŒ³‚·‚é‚½‚ß‚Ìˆ—
     void InitializeOreFromGameManager()
     {
         foreach (var ore in oreDict)
