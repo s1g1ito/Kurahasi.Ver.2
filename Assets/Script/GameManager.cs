@@ -9,7 +9,8 @@ public class GameManager : MonoBehaviour
     public int pickaxeDurability = 50; // Œ»İ‚Ì‘Ï‹v’l
     public int maxPickaxeDurability = 50;     // Å‘å‘Ï‹v’l
 
-    //public int coalCount = 0;          // Î’Y‚ÌŠ”
+    public bool jumpBoostPurchased = false;
+    public int jumpBoostRemaining = 0;
 
     // Œ@‚ç‚ê‚½ƒ^ƒCƒ‹‚ÌÀ•W‚ğ•Û‘¶‚·‚é
     public HashSet<Vector3Int> minedTiles = new HashSet<Vector3Int>();
