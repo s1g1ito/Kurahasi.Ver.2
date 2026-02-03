@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public int pickaxeDurability = 50; // 現在の耐久値
-    public int maxDurability = 50;     // 最大耐久値
+    public int maxPickaxeDurability = 50;     // 最大耐久値
 
     //public int coalCount = 0;          // 石炭の所持数
 
@@ -42,31 +42,8 @@ public class GameManager : MonoBehaviour
     public void ReduceDurability(int amount)
     {
         pickaxeDurability -= amount;
-        pickaxeDurability = Mathf.Clamp(pickaxeDurability, 0, maxDurability);
+        pickaxeDurability = Mathf.Clamp(pickaxeDurability, 0, maxPickaxeDurability);
     }
 
-    //// ピッケルを修理する（Coal 2個必要）
-    //public bool TryRepairPickaxe()
-    //{
-    //    // すでに最大なら修理不要
-    //    if (pickaxeDurability >= maxDurability)
-    //    {
-    //        Debug.Log("耐久値はすでに最大です");
-    //        return false;
-    //    }
-
-    //    // Coal が足りない
-    //    if (coalCount < 2)
-    //    {
-    //        Debug.Log("アイテムが足りません！");
-    //        return false;
-    //    }
-
-    //    // Coal を消費して修理
-    //    coalCount -= 2;
-    //    pickaxeDurability = maxDurability;
-
-    //    Debug.Log("ピッケルを修理しました！");
-    //    return true;
-    //}
+    
 }
