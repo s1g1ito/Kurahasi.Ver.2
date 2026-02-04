@@ -5089,7 +5089,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickaxeDurability: 50
-  maxDurability: 50
+  maxPickaxeDurability: 50
   jumpBoostPurchased: 0
   jumpBoostRemaining: 0
 --- !u!4 &1444456188
@@ -5711,6 +5711,7 @@ GameObject:
   - component: {fileID: 1535923720}
   - component: {fileID: 1535923721}
   - component: {fileID: 1535923722}
+  - component: {fileID: 1535923723}
   m_Layer: 0
   m_Name: player_0
   m_TagString: Player
@@ -5837,6 +5838,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 72
   isAbsorbing: 0
+  xSpeed: 0
+  rightFacting: 0
   isGrounded: 1
 --- !u!61 &1535923716
 BoxCollider2D:
@@ -5966,6 +5969,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   climbSpeed: 3
+--- !u!95 &1535923723
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1535923711}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 399666176c946f44aa076b6024323fe0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1544548592
 GameObject:
   m_ObjectHideFlags: 0
