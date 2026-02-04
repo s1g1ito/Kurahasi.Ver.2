@@ -1493,6 +1493,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickaxe: {fileID: 148548588}
+  requiredOres:
+  - type: 2
+    amount: 5
+  - type: 1
+    amount: 10
+  newMaxDurability: 100
 --- !u!114 &416485401
 MonoBehaviour:
   m_ObjectHideFlags: 0
