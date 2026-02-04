@@ -1,37 +1,54 @@
 using UnityEngine;
+using System.Collections.Generic;
 
+/// <summary>
+/// ショップUIのパネル表示を管理するクラス
+/// ・複数あるショップパネルの切り替えを担当
+/// ・1つだけ表示して、他はすべて非表示にする
+/// </summary>
 public class ShopUIManager : MonoBehaviour
 {
-    public GameObject panel1;
-    public GameObject panel2;
-    public GameObject panel3;
+    [Header("表示切り替えするパネル")]
+    // 表示対象のパネル一覧
+    // Inspectorで順番に登録する
+    // 例：
+    // 0 = 強化パネル
+    // 1 = 修理パネル
+    // 2 = その他パネル
+    public List<GameObject> panels = new List<GameObject>();
 
-    // すべてのパネルを非表示にする
+    /// <summary>
+    /// 登録されているすべてのパネルを非表示にする
+    /// </summary>
     void HideAll()
     {
-        panel1.SetActive(false);
-        panel2.SetActive(false);
-        panel3.SetActive(false);
+        // panels に登録されているパネルを1つずつ非表示にする
+        foreach (var panel in panels)
+        {
+            panel.SetActive(false);
+        }
     }
 
-    // EnhancementPanel のボタン → Panel1 を表示
-    public void ShowPanel1()
+    /// <summary>
+    /// 指定したインデックスのパネルだけを表示する
+    /// </summary>
+    /// <param name="index">
+    /// 表示したいパネルの番号
+    /// panels リストの順番と対応する
+    /// </param>
+    public void ShowPanel(int index)
     {
+        // まず全パネルを非表示にする
         HideAll();
-        panel1.SetActive(true);
-    }
 
-    // Panel1 のボタン(1) → Panel2 を表示
-    public void ShowPanel2()
-    {
-        HideAll();
-        panel2.SetActive(true);
-    }
+        // index が範囲外の場合は何もしない
+        if (index < 0 || index >= panels.Count)
+        {
+            Debug.LogWarning("Panel index が範囲外です");
+            return;
+        }
 
-    // Panel1 のボタン(2) → Panel3 を表示
-    public void ShowPanel3()
-    {
-        HideAll();
-        panel3.SetActive(true);
+        // 指定されたパネルだけを表示
+        panels[index].SetActive(true);
     }
 }
