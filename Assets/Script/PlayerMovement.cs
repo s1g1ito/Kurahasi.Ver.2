@@ -32,6 +32,8 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector] public float xSpeed;
     [HideInInspector] public bool rightFacting;
 
+    Animator animator;
+
 
     // 現在地面にいるかどうか
     [SerializeField] private bool isGrounded = false;
@@ -45,6 +47,8 @@ public class PlayerMovement : MonoBehaviour
 
         // 変数初期化
         rightFacting = true;
+
+        this.animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -78,6 +82,15 @@ public class PlayerMovement : MonoBehaviour
             spriteRenderer.flipX = true;
             move = 1f;
         }
+
+        if(this.rb.linearVelocity.y == 0)
+        {
+            this.animator.speed = xSpeed / 2.0f;
+        }
+        else
+        {
+            this.animator.speed = 1.0f;
+        }
           
 
         rb.linearVelocity = new Vector2(move * moveSpeed, rb.linearVelocity.y);
@@ -87,7 +100,10 @@ public class PlayerMovement : MonoBehaviour
         // ============================
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
+            this.animator.SetTrigger("jumpTrigger");
             float finalJumpPower = jumpForce;
+
+
 
             //ジャンプ強化が有効なら強化ジャンプ
             if (GameManager.Instance.jumpBoostPurchased &&
@@ -110,6 +126,8 @@ public class PlayerMovement : MonoBehaviour
 
             // 実際のジャンプ
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, finalJumpPower);
+
+            this.animator.speed = xSpeed / 2.0f;
         }
     }
 }
