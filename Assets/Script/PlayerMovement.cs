@@ -25,12 +25,26 @@ public class PlayerMovement : MonoBehaviour
     // ゴール穴などに吸い込まれているかどうか
     public bool isAbsorbing = false;
 
+    // オブジェクトコンポーネント参照  
+    private SpriteRenderer spriteRenderer;
+
+    // 移動関数変数
+    [HideInInspector] public float xSpeed;
+    [HideInInspector] public bool rightFacting;
+
+
     // 現在地面にいるかどうか
     [SerializeField] private bool isGrounded = false;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        // コンポーネント参照取得
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
+        // 変数初期化
+        rightFacting = true;
     }
 
     void Update()
@@ -50,9 +64,21 @@ public class PlayerMovement : MonoBehaviour
         float move = 0f;
 
         if (Input.GetKey(KeyCode.A))
+        {
+            rightFacting = true;
+
+            spriteRenderer.flipX = false;
             move = -1f;
+        }
+            
         if (Input.GetKey(KeyCode.D))
+        {
+            rightFacting = false;
+
+            spriteRenderer.flipX = true;
             move = 1f;
+        }
+          
 
         rb.linearVelocity = new Vector2(move * moveSpeed, rb.linearVelocity.y);
 

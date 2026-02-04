@@ -302,6 +302,135 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 98721158}
   m_CullTransparentMesh: 1
+--- !u!1 &131479360
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 131479363}
+  - component: {fileID: 131479362}
+  m_Layer: 0
+  m_Name: Audio Source
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &131479362
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131479360}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &131479363
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131479360}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.68303543, y: -0.43163246, z: -0.004500015}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &148548585
 GameObject:
   m_ObjectHideFlags: 0
@@ -357,6 +486,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 72
   isAbsorbing: 0
+  xSpeed: 0
+  rightFacting: 0
   isGrounded: 1
 --- !u!61 &148548591
 BoxCollider2D:
@@ -863,6 +994,7 @@ GameObject:
   - component: {fileID: 274465021}
   - component: {fileID: 274465020}
   - component: {fileID: 274465019}
+  - component: {fileID: 274465022}
   m_Layer: 5
   m_Name: HealButtom
   m_TagString: Untagged
@@ -946,6 +1078,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 274465022}
+        m_TargetAssemblyTypeName: ShopSE, Assembly-CSharp
+        m_MethodName: PlayClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &274465020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -984,6 +1128,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 274465017}
   m_CullTransparentMesh: 1
+--- !u!114 &274465022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 274465017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8a16aa028682f4cafa24da157f6903, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickSE: {fileID: 8300000, guid: 4cc1e186e1ed94c42b9aed9d79315be6, type: 3}
 --- !u!1 &297225776
 GameObject:
   m_ObjectHideFlags: 0
@@ -1147,6 +1304,7 @@ GameObject:
   - component: {fileID: 364891211}
   - component: {fileID: 364891210}
   - component: {fileID: 364891213}
+  - component: {fileID: 364891214}
   m_Layer: 5
   m_Name: EnhancementButton (1)
   m_TagString: Untagged
@@ -1230,6 +1388,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 364891214}
+        m_TargetAssemblyTypeName: ShopSE, Assembly-CSharp
+        m_MethodName: PlayClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &364891211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1282,6 +1452,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnhancementPanel: {fileID: 1123264988}
   playerMovement: {fileID: 148548590}
+--- !u!114 &364891214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 364891208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8a16aa028682f4cafa24da157f6903, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickSE: {fileID: 8300000, guid: 4cc1e186e1ed94c42b9aed9d79315be6, type: 3}
 --- !u!1 &398100516
 GameObject:
   m_ObjectHideFlags: 0
@@ -1452,6 +1635,7 @@ GameObject:
   - component: {fileID: 416485403}
   - component: {fileID: 416485402}
   - component: {fileID: 416485401}
+  - component: {fileID: 416485404}
   - component: {fileID: 416485400}
   m_Layer: 5
   m_Name: Button
@@ -1492,13 +1676,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1157f2707c9bcd64b891ac1b43857173, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredOres:
-  - type: 2
-    amount: 5
-  - type: 1
-    amount: 10
   pickaxe: {fileID: 148548588}
-  newMaxDurability: 100
 --- !u!114 &416485401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1555,6 +1733,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 416485404}
+        m_TargetAssemblyTypeName: ShopSE, Assembly-CSharp
+        m_MethodName: PlayClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &416485402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1593,6 +1783,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 416485398}
   m_CullTransparentMesh: 1
+--- !u!114 &416485404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416485398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8a16aa028682f4cafa24da157f6903, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickSE: {fileID: 8300000, guid: 4cc1e186e1ed94c42b9aed9d79315be6, type: 3}
 --- !u!1 &419059067
 GameObject:
   m_ObjectHideFlags: 0
@@ -2239,6 +2442,7 @@ GameObject:
   - component: {fileID: 701782193}
   - component: {fileID: 701782192}
   - component: {fileID: 701782191}
+  - component: {fileID: 701782195}
   - component: {fileID: 701782194}
   m_Layer: 5
   m_Name: Button (Legacy)
@@ -2323,6 +2527,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 701782195}
+        m_TargetAssemblyTypeName: ShopSE, Assembly-CSharp
+        m_MethodName: PlayClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &701782192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2373,9 +2589,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01fe466f21744274cb0e522c812b6cb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredOres:
-  - type: 4
-    amount: 5
+  inventory: {fileID: 1023041719}
+  requiredEmerald: 5
+--- !u!114 &701782195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701782188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8a16aa028682f4cafa24da157f6903, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickSE: {fileID: 8300000, guid: 4cc1e186e1ed94c42b9aed9d79315be6, type: 3}
 --- !u!1 &717992639
 GameObject:
   m_ObjectHideFlags: 0
@@ -3186,6 +3414,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 953046284}
+        m_TargetAssemblyTypeName: ShopSE, Assembly-CSharp
+        m_MethodName: PlayClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &953046282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3231,13 +3471,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 953046279}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa6e5162af5bb134d9d65c5fb00bc3da, type: 3}
+  m_Script: {fileID: 11500000, guid: ce8a16aa028682f4cafa24da157f6903, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerInventory: {fileID: 1023041719}
-  craftButton: {fileID: 953046281}
+  clickSE: {fileID: 8300000, guid: 4cc1e186e1ed94c42b9aed9d79315be6, type: 3}
 --- !u!1 &961629803
 GameObject:
   m_ObjectHideFlags: 0
@@ -3251,6 +3490,7 @@ GameObject:
   - component: {fileID: 961629806}
   - component: {fileID: 961629805}
   - component: {fileID: 961629808}
+  - component: {fileID: 961629809}
   m_Layer: 5
   m_Name: BackButton (2)
   m_TagString: Untagged
@@ -3334,6 +3574,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 961629809}
+        m_TargetAssemblyTypeName: ShopSE, Assembly-CSharp
+        m_MethodName: PlayClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &961629806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3386,6 +3638,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnhancementPanel: {fileID: 1123264988}
   playerMovement: {fileID: 148548590}
+--- !u!114 &961629809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 961629803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8a16aa028682f4cafa24da157f6903, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickSE: {fileID: 8300000, guid: 4cc1e186e1ed94c42b9aed9d79315be6, type: 3}
 --- !u!1 &962195407
 GameObject:
   m_ObjectHideFlags: 0
@@ -5698,6 +5963,7 @@ GameObject:
   - component: {fileID: 1826014836}
   - component: {fileID: 1826014835}
   - component: {fileID: 1826014834}
+  - component: {fileID: 1826014837}
   m_Layer: 5
   m_Name: ShopButtom
   m_TagString: Untagged
@@ -5781,6 +6047,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1826014837}
+        m_TargetAssemblyTypeName: ShopSE, Assembly-CSharp
+        m_MethodName: PlayClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1826014835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5819,6 +6097,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1826014832}
   m_CullTransparentMesh: 1
+--- !u!114 &1826014837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1826014832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8a16aa028682f4cafa24da157f6903, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickSE: {fileID: 8300000, guid: 4cc1e186e1ed94c42b9aed9d79315be6, type: 3}
 --- !u!1 &1899437243
 GameObject:
   m_ObjectHideFlags: 0
@@ -6158,6 +6449,7 @@ GameObject:
   - component: {fileID: 1973294983}
   - component: {fileID: 1973294982}
   - component: {fileID: 1973294981}
+  - component: {fileID: 1973294985}
   - component: {fileID: 1973294984}
   m_Layer: 5
   m_Name: Button (Legacy)
@@ -6242,6 +6534,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1973294985}
+        m_TargetAssemblyTypeName: ShopSE, Assembly-CSharp
+        m_MethodName: PlayClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1973294982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6292,9 +6596,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60c9e74a72ef7c24f888ee91a68a4de2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredOres:
-  - type: 5
-    amount: 2
+  needCoal: 2
+--- !u!114 &1973294985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1973294979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8a16aa028682f4cafa24da157f6903, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickSE: {fileID: 8300000, guid: 4cc1e186e1ed94c42b9aed9d79315be6, type: 3}
 --- !u!1 &1983066410
 GameObject:
   m_ObjectHideFlags: 0
@@ -6552,3 +6867,4 @@ SceneRoots:
   - {fileID: 1023041720}
   - {fileID: 157897716}
   - {fileID: 1522570836}
+  - {fileID: 131479363}
