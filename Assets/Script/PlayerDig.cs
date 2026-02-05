@@ -23,6 +23,15 @@ public class PlayerDig : MonoBehaviour
     void Start()
     {
         durability = GetComponent<PickaxeDurability>();
+
+        //GameScene ‚É–ß‚Á‚Ä‚«‚½‚Æ‚«‚ÉŒ@‚Á‚½ƒ^ƒCƒ‹‚ğÁ‚·
+        foreach (var pos in GameManager.Instance.minedTiles)
+        {
+            foreach (var data in digTilemaps)
+            {
+                data.tilemap.SetTile(pos, null);
+            }
+        }
     }
 
     void Update()

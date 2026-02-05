@@ -1676,7 +1676,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1157f2707c9bcd64b891ac1b43857173, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  requiredOres: []
   pickaxe: {fileID: 148548588}
+  newMaxDurability: 100
 --- !u!114 &416485401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2589,8 +2591,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01fe466f21744274cb0e522c812b6cb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: {fileID: 1023041719}
-  requiredEmerald: 5
+  requiredOres: []
 --- !u!114 &701782195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5097,54 +5098,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1516196437}
   m_CullTransparentMesh: 1
---- !u!1 &1522570834
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1522570836}
-  - component: {fileID: 1522570835}
-  m_Layer: 0
-  m_Name: GameManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1522570835
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1522570834}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee6e5b24a51f6fa4ea973984eb069ef5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pickaxeDurability: 50
-  maxPickaxeDurability: 50
-  jumpBoostPurchased: 0
-  jumpBoostRemaining: 0
---- !u!4 &1522570836
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1522570834}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.14, y: 0.92411256, z: 0.1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1527332503
 GameObject:
   m_ObjectHideFlags: 0
@@ -6596,7 +6549,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60c9e74a72ef7c24f888ee91a68a4de2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  needCoal: 2
+  requiredOres: []
 --- !u!114 &1973294985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6866,5 +6819,4 @@ SceneRoots:
   - {fileID: 1983066412}
   - {fileID: 1023041720}
   - {fileID: 157897716}
-  - {fileID: 1522570836}
   - {fileID: 131479363}
