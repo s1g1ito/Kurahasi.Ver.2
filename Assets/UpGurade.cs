@@ -1,31 +1,30 @@
 using UnityEngine;
 
-public class UpGurade : MonoBehaviour
+/// <summary>
+/// ツルハシの最大耐久値を強化するクラフト
+/// </summary>
+public class UpGurade : CraftBase
 {
     public PickaxeDurability pickaxe;
 
-    public void Craft()
+    [Header("強化後の最大耐久値")]
+    public int newMaxDurability = 100;
+
+    /// <summary>
+    /// クラフト成功時の処理
+    /// （素材消費後に自動で呼ばれる）
+    /// </summary>
+    protected override void OnCraftSuccess()
     {
-        var inv = PlayerInventory.Instance; 
-        // 必要素材
-        int needCopper = 4;
-        int needIron = 2; 
-        // 足りているかチェック
-        if (!inv.HasEnough(OreType.Copper, needCopper) ||
-            !inv.HasEnough(OreType.Iron, needIron)) 
-        {
-            Debug.Log("素材が足りません"); 
-            return;
-        } 
-        // 素材を消費
-        inv.UseOre(OreType.Copper, needCopper);
-        inv.UseOre(OreType.Iron, needIron); 
-        Debug.Log("クラフト成功！ Copper4 と Iron2 を消費しました");
-        // ★ 最大耐久値を 70 にアップ
-        // ★ GameManager にも保存する
-        GameManager.Instance.maxPickaxeDurability = 70;
-        GameManager.Instance.pickaxeDurability = 70;
-        pickaxe.SetMaxDurability(70); 
-        Debug.Log("ツルハシの最大耐久値が 70 にアップしました！");
+        var gm = GameManager.Instance;
+
+        // 最大耐久値を更新
+        gm.maxPickaxeDurability = newMaxDurability;
+        gm.pickaxeDurability = newMaxDurability;
+
+        // 実体のピッケルにも反映
+        pickaxe.SetMaxDurability(newMaxDurability);
+
+        Debug.Log($"ツルハシ強化成功！ 最大耐久値 {newMaxDurability}");
     }
 }

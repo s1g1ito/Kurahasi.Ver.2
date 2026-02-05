@@ -11,8 +11,6 @@ public class PlayerDig : MonoBehaviour
     public PlayerInventory inventory;
     private PickaxeDurability durability;
 
-    public Tilemap tilemap;
-
     [System.Serializable]
     public class DigTilemapData
     {

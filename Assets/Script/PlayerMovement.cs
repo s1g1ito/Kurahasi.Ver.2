@@ -25,12 +25,30 @@ public class PlayerMovement : MonoBehaviour
     // ゴール穴などに吸い込まれているかどうか
     public bool isAbsorbing = false;
 
+    // オブジェクトコンポーネント参照  
+    private SpriteRenderer spriteRenderer;
+
+    // 移動関数変数
+    [HideInInspector] public float xSpeed;
+    [HideInInspector] public bool rightFacting;
+
+    Animator animator;
+
+
     // 現在地面にいるかどうか
     [SerializeField] private bool isGrounded = false;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        // コンポーネント参照取得
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
+        // 変数初期化
+        rightFacting = true;
+
+        this.animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -50,9 +68,30 @@ public class PlayerMovement : MonoBehaviour
         float move = 0f;
 
         if (Input.GetKey(KeyCode.A))
+        {
+            rightFacting = true;
+
+            spriteRenderer.flipX = false;
             move = -1f;
+        }
+            
         if (Input.GetKey(KeyCode.D))
+        {
+            rightFacting = false;
+
+            spriteRenderer.flipX = true;
             move = 1f;
+        }
+
+        if(this.rb.linearVelocity.y == 0)
+        {
+            this.animator.speed = xSpeed / 2.0f;
+        }
+        else
+        {
+            this.animator.speed = 1.0f;
+        }
+          
 
         rb.linearVelocity = new Vector2(move * moveSpeed, rb.linearVelocity.y);
 
@@ -61,7 +100,10 @@ public class PlayerMovement : MonoBehaviour
         // ============================
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
+            this.animator.SetTrigger("jumpTrigger");
             float finalJumpPower = jumpForce;
+
+
 
             //ジャンプ強化が有効なら強化ジャンプ
             if (GameManager.Instance.jumpBoostPurchased &&
@@ -84,6 +126,8 @@ public class PlayerMovement : MonoBehaviour
 
             // 実際のジャンプ
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, finalJumpPower);
+
+            this.animator.speed = xSpeed / 2.0f;
         }
     }
 }

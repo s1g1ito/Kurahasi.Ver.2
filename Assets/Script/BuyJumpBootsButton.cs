@@ -1,27 +1,14 @@
 using UnityEngine;
 
-public class BuyJumpBootsButton : MonoBehaviour
+public class BuyJumpBootsButton : CraftBase
 {
-    public PlayerInventory inventory;   // PlayerInventory を Inspector でセット
-    public int requiredEmerald = 5;     // 必要なエメラルド数
-
-    public void OnBuyButtonPressed()
+    protected override void OnCraftSuccess()
     {
-        //エメラルドが5個あるかチェック
-        if (!inventory.HasEnough(OreType.Emerald, requiredEmerald))
-        {
-            Debug.Log("素材が足りません！");
-            return;
-        }
+        var gm = GameManager.Instance;
 
-        //エメラルドを5個消費
-        inventory.UseOre(OreType.Emerald, requiredEmerald);
+        gm.jumpBoostPurchased = true;
+        gm.jumpBoostRemaining = 5;
 
-        //靴を購入（ここに強化処理を書く）
         Debug.Log("ジャンプ強化の靴を購入しました！");
-
-        //ジャンプ強化を有効化
-        GameManager.Instance.jumpBoostPurchased = true; 
-        GameManager.Instance.jumpBoostRemaining = 5; // 5回まで強化ジャンプ可能
     }
 }
