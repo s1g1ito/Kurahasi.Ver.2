@@ -75,7 +75,8 @@ public class PlayerInventory : MonoBehaviour
 
         oreDict[type].amount += amount;
 
-        
+        //// GameManager ‚É•Û‘¶
+        //GameManager.Instance.SetOre(type, oreDict[type].amount);
 
         onOreChanged?.Invoke();
     }
@@ -86,7 +87,8 @@ public class PlayerInventory : MonoBehaviour
 
         oreDict[type].amount -= amount;
 
-        
+        //// GameManager ‚É•Û‘¶
+        //GameManager.Instance.SetOre(type, oreDict[type].amount);
 
         onOreChanged?.Invoke();
         return true;
