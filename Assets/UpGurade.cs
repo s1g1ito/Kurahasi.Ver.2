@@ -9,6 +9,10 @@ public class UpGurade : CraftBase
 
     [Header("強化後の最大耐久値")]
     public int newMaxDurability = 100;
+    public void OnClickCraft()
+    {
+        Craft(); // CraftBase にある想定
+    }
 
     /// <summary>
     /// クラフト成功時の処理

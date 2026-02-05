@@ -2,6 +2,11 @@ using UnityEngine;
 
 public class PickaxeRepairButton : CraftBase
 {
+    public void OnClickCraft()
+    {
+        Craft(); // CraftBase ‚É‚ ‚é‘z’è
+    }
+
     protected override void OnCraftSuccess()
     {
         var gm = GameManager.Instance;

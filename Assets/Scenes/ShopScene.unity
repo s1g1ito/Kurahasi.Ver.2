@@ -1676,7 +1676,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1157f2707c9bcd64b891ac1b43857173, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  requiredOres:
+  - type: 2
+    amount: 10
+  - type: 1
+    amount: 5
   pickaxe: {fileID: 148548588}
+  newMaxDurability: 100
 --- !u!114 &416485401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1723,7 +1729,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 416485400}
         m_TargetAssemblyTypeName: UpGurade, Assembly-CSharp
-        m_MethodName: Craft
+        m_MethodName: OnClickCraft
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2517,7 +2523,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 701782194}
         m_TargetAssemblyTypeName: BuyJumpBootsButton, Assembly-CSharp
-        m_MethodName: OnBuyButtonPressed
+        m_MethodName: Craft
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2589,8 +2595,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01fe466f21744274cb0e522c812b6cb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: {fileID: 1023041719}
-  requiredEmerald: 5
+  requiredOres:
+  - type: 4
+    amount: 5
 --- !u!114 &701782195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6524,7 +6531,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1973294984}
         m_TargetAssemblyTypeName: PickaxeRepairButton, Assembly-CSharp
-        m_MethodName: OnRepairButtonPressed
+        m_MethodName: OnClickCraft
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6596,7 +6603,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60c9e74a72ef7c24f888ee91a68a4de2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  needCoal: 2
+  requiredOres: []
 --- !u!114 &1973294985
 MonoBehaviour:
   m_ObjectHideFlags: 0
