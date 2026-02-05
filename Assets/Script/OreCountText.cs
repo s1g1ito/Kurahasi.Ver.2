@@ -9,7 +9,15 @@ public class OreCountText : MonoBehaviour
     private PlayerInventory inventory;
 
     void OnEnable()
-    { // シーン内の PlayerInventory を探す
+    {
+        //CountText が設定されていない場合はエラー
+        if (CountText == null) 
+        {
+            Debug.LogError("OreCountText: CountText が Inspector に設定されていません"); 
+            return; 
+        }
+
+        // シーン内の PlayerInventory を探す
         inventory = FindFirstObjectByType<PlayerInventory>();
         if (inventory == null)
         {
@@ -22,7 +30,7 @@ public class OreCountText : MonoBehaviour
         UpdateText();
     }
 
-    // ★ PlayerInventory を探してイベント登録する共通関数
+    //PlayerInventory を探してイベント登録する共通関数
    
     void OnDisable()
     {

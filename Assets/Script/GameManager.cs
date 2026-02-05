@@ -64,6 +64,12 @@ public class GameManager : MonoBehaviour
 
             // ÉVÅ[ÉìÇÇ‹ÇΩÇ¢Ç≈Ç‡îjä¸Ç≥ÇÍÇ»Ç¢ÇÊÇ§Ç…Ç∑ÇÈ
             DontDestroyOnLoad(gameObject);
+
+            foreach (OreType type in System.Enum.GetValues(typeof(OreType))) 
+            {
+                if (!oreCounts.ContainsKey(type)) 
+                    oreCounts[type] = 0; 
+            }
         }
         else
         {

@@ -47,7 +47,6 @@ public class PlayerInventory : MonoBehaviour
 
         // Singleton 登録
         Instance = this;
-        DontDestroyOnLoad(gameObject);
 
         // Inspector の List → Dictionary に変換
         oreDict.Clear();
@@ -128,6 +127,9 @@ public class PlayerInventory : MonoBehaviour
 
         oreDict[type].amount += amount;
 
+        //GameManagerに保存
+        GameManager.Instance.SetOre(type, oreDict[type].amount);
+
         // UI 更新通知
         onOreChanged?.Invoke();
     }
@@ -142,6 +144,9 @@ public class PlayerInventory : MonoBehaviour
         if (!HasEnough(type, amount)) return false;
 
         oreDict[type].amount -= amount;
+
+        //GameManagerに保存
+        GameManager.Instance.SetOre(type, oreDict[type].amount);
 
         // UI 更新通知
         onOreChanged?.Invoke();
